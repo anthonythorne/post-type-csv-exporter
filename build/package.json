@@ -1,0 +1,65 @@
+{
+  "name": "post-type-csv-exporter",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack --r @babel/register --watch --progress",
+    "dev-dashboard": "NODE_ENV=development webpack-dashboard -- webpack --r @babel/register --watch --progress",
+    "prod": "NODE_ENV=production webpack --r @babel/register"
+  },
+  "keywords": [
+    "webpack",
+    "assets"
+  ],
+  "author": "TCC",
+  "license": "MIT",
+  "homepage": "https://thecode.co",
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
+    "@babel/plugin-proposal-export-namespace-from": "^7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.4",
+    "@wordpress/babel-preset-default": "^4.16.0",
+    "@wordpress/browserslist-config": "^2.7.0",
+    "@wordpress/eslint-plugin": "^7.1.0",
+    "autoprefixer": "^9.8.4",
+    "babel-eslint": "^10.1.0",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.6.0",
+    "custom-event-polyfill": "^1.0.7",
+    "eslint": "^7.3.1",
+    "glob": "^7.1.6",
+    "highlight.js": "^10.1.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.2",
+    "sass-mq": "^5.0.1",
+    "terser-webpack-plugin": "^3.0.6",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dashboard": "^3.2.0",
+    "zxcvbn": "^4.4.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.10.4",
+    "@babel/runtime": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "jquery": "^3.5.1",
+    "path": "^0.12.7",
+    "select2": "^4.0.13"
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ]
+}

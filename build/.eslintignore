@@ -1,0 +1,4 @@
+**/node_modules/**
+**/view/dist/**
+**/view/src/helpers/logger.js
+webpack.config.js
