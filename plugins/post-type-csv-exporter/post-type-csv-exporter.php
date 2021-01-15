@@ -29,7 +29,6 @@ add_action( 'plugins_loaded', 'post_type_csv_exporter_setup' );
 function post_type_csv_exporter_setup() {
 	// All of the theme controller instances.
 	$controllers = [
-		new \PostTypeCSVExporter\Controller\WPHeadController(),
 		new \PostTypeCSVExporter\Controller\AdminSettingsController(),
 	];
 
