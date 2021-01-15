@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Post Type CSV Exporter
- * Plugin URI: https://thecode.co
+ * Plugin URI: https://github.com/anthonythorne33/post-type-csv-exporter
  * Description: Basic CSV Exporter for Posts and Custom Post Types. Allows for exporting Post data, meta data, tags and categories.
  * Version: 1.0
  * Author: Anthony Thorne @ The Code Company
