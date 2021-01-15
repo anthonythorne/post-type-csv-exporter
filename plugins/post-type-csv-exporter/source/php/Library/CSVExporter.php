@@ -12,8 +12,9 @@
 
 namespace PostTypeCSVExporter\Library;
 
-use WP_Post_Type;
-use WP_Post;
+use PostTypeCSVExporter\View\AdminCSVExporterView;
+use function PostTypeCSVExporter\create_empty_wp_post;
+use function PostTypeCSVExporter\find_asset_file_path;
 
 /**
  * Enables a CSV exporter admin page for a post type.
@@ -138,7 +139,7 @@ class CSVExporter {
 	/**
 	 * Setup any parameters for latter use.
 	 *
-	 * @param WP_Post_Type $post_type_object The post type object.
+	 * @param \WP_Post_Type $post_type_object The post type object.
 	 */
 	protected function set_parameters( $post_type_object ) {
 
@@ -181,16 +182,21 @@ class CSVExporter {
 	 */
 	public function admin_enqueues( $hook ) {
 
-		if ( is_admin() && $this->export_enqueue_hook === $hook ) {
+		if ( is_admin() &&
+			$this->export_enqueue_hook === $hook &&
+			defined( 'POST_TYPE_CSV_EXPORTER_DIR_PATH' ) ) {
 
-			$templates_path = plugins_url( '/template/', realpath( __DIR__ ) );
+			$source_dir = POST_TYPE_CSV_EXPORTER_DIR_PATH . 'source';
+			$source_url = POST_TYPE_CSV_EXPORTER_URL . 'source';
+
+			$js_path = find_asset_file_path( $source_dir, 'js', self::ASSETS_FILE_NAME , 'js' );
 
 			// JS.
 			wp_register_script(
-				self::ASSETS_ENQUEUE_HANDLE,
-				$templates_path . 'js/' . self::ASSETS_FILE_NAME . '.js',
+				self::ASSETS_ENQUEUE_HANDLE . '-js',
+				$source_url . $js_path,
 				[ 'jquery' ],
-				true,
+				'1.1',
 				true
 			);
 
@@ -200,11 +206,14 @@ class CSVExporter {
 				'post_type'  => $this->post_type,
 			];
 
-			wp_localize_script( self::ASSETS_ENQUEUE_HANDLE, 'postTypeCSVExporterConfig', $params );
-			wp_enqueue_script( self::ASSETS_ENQUEUE_HANDLE, );
+			wp_localize_script( self::ASSETS_ENQUEUE_HANDLE . '-js', 'postTypeCSVExporterConfig', $params );
+			wp_enqueue_script( self::ASSETS_ENQUEUE_HANDLE . '-js' );
+
 
 			// CSS.
-			wp_enqueue_style( self::ASSETS_ENQUEUE_HANDLE, $templates_path . 'js/' . self::ASSETS_FILE_NAME . '.js', '', true );
+			$css_path = find_asset_file_path( $source_dir, 'css', self::ASSETS_FILE_NAME , 'css' );
+
+			wp_enqueue_style( self::ASSETS_ENQUEUE_HANDLE, $source_url . $css_path, '', true );
 		}
 	}
 
@@ -246,9 +255,14 @@ class CSVExporter {
 	 * @return array
 	 */
 	public function get_post_keys( $post_type ) {
-		$blank_post_instance = new \WP_Post( WP_Post::get_instance( 0 ) );
 
-		$post_keys = array_keys( get_object_vars( $blank_post_instance ) );
+		$blank_post_instance = create_empty_wp_post();
+
+		if ( is_object( $blank_post_instance ) ) {
+			$post_keys = array_keys( get_object_vars( $blank_post_instance ) );
+		} else {
+			$post_keys = [];
+		}
 
 		// Filter the format.
 		$post_keys = $this->create_key_title_pair( $post_keys );

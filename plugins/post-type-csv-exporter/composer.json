@@ -7,10 +7,10 @@
   },
   "autoload": {
     "files": [
-      "../source/php/Function/AutoLoad.php"
+      "./source/php/Function/AutoLoad.php"
     ],
     "psr-4": {
-      "PostTypeCSVExporter\\": "../source/php/"
+      "PostTypeCSVExporter\\": "./source/php/"
     }
   }
 }

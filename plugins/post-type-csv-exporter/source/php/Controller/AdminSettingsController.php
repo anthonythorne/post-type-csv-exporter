@@ -21,7 +21,12 @@ class AdminSettingsController extends Controller {
 	 * Register all actions, filters etc.
 	 */
 	public function setup() {
+		/*
+		 * TODO
+		 * Add a settings page that manages the Post Types that the CSV page is added for.
+		 * This page will also list the allowed export fields for the given post type such
+		 * as post fields, meta fields, categories, tags, taxonomies.
+		 */
 	}
 
 }
-

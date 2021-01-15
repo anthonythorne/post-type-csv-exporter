@@ -4,7 +4,7 @@
  * Plugin URI: https://thecode.co
  * Description: Basic CSV Exporter for Posts and Custom Post Types. Allows for exporting Post data, meta data, tags and categories.
  * Version: 1.0
- * Author: Anthony Thorne
+ * Author: Anthony Thorne @ The Code Company
  * Author URI: https://thecode.co
  */
 
@@ -39,18 +39,17 @@ function post_type_csv_exporter_setup() {
 
 }
 
+// TODO not required at this stage.
+// register_activation_hook( POST_TYPE_CSV_EXPORTER_BASENAME, 'post_type_csv_exporter_activate' );
 /**
  * Clear the settings when we activate the plugin.
  */
 function post_type_csv_exporter_activate() {
 }
-
+// TODO not required at this stage.
+// register_deactivation_hook( POST_TYPE_CSV_EXPORTER_BASENAME, 'post_type_csv_exporter_deactivate' );
 /**
  * Clear the settings when we deactivate the plugin.
  */
 function post_type_csv_exporter_deactivate() {
 }
-
-register_activation_hook( POST_TYPE_CSV_EXPORTER_FILE, 'post_type_csv_exporter_activate' );
-
-register_deactivation_hook( POST_TYPE_CSV_EXPORTER_FILE, 'post_type_csv_exporter_deactivate' );

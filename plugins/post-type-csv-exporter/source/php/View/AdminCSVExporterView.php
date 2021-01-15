@@ -26,17 +26,15 @@ class AdminCSVExporterView extends View {
 	 */
 	public static function render_admin_page( $slug, $sub_dir = '', $template_args = [] ) {
 
-		if ( empty( $slug ) ) {
+		if ( empty( $slug ) || ! defined( 'POST_TYPE_CSV_EXPORTER_DIR_PATH' ) ) {
 			return;
 		}
-
-		$config = Config::get( 'core' );
 
 		$templater = new Templater(
 			[
 				'slug'   => $slug,
 				'subdir' => $sub_dir,
-				'dir'    => $config->app( 'directory' ),
+				'dir'    => POST_TYPE_CSV_EXPORTER_DIR_PATH,
 				'vars'   => $template_args,
 			]
 		);

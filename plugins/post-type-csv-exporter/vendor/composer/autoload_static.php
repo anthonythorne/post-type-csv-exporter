@@ -7,7 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit82a022918342b1bcd32a2d7d94f3a407
 {
     public static $files = array (
-        '13b1190bc7f9213e91e25a07b9b1e6b6' => __DIR__ . '/../..' . '/../source/php/Function/AutoLoad.php',
+        '83452c1000f2e6ad6960a3e921789a66' => __DIR__ . '/../..' . '/source/php/Function/AutoLoad.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,7 +20,7 @@ class ComposerStaticInit82a022918342b1bcd32a2d7d94f3a407
     public static $prefixDirsPsr4 = array (
         'PostTypeCSVExporter\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/../source/php',
+            0 => __DIR__ . '/../..' . '/source/php',
         ),
     );
 

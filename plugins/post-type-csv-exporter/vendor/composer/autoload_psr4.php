@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PostTypeCSVExporter\\' => array($baseDir . '/../source/php'),
+    'PostTypeCSVExporter\\' => array($baseDir . '/source/php'),
 );
