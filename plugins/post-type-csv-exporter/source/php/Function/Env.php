@@ -37,7 +37,7 @@ function is_production() {
 	}
 
 	// Default, returns true for production if not set.
-	return function_exists( 'wp_get_environment_type' ) ? 'production' === wp_get_environment_type() : true;
+	return 'production' === get_environment_type();
 }
 
 /**
@@ -52,7 +52,7 @@ function is_staging() {
 	}
 
 	// Default, returns true for production if not set.
-	return function_exists( 'wp_get_environment_type' ) ? 'staging' === wp_get_environment_type() : false;
+	return 'staging' === get_environment_type();
 }
 
 /**
@@ -71,7 +71,7 @@ function is_local() {
 	}
 
 	// Default, returns true for production if not set.
-	return function_exists( 'wp_get_environment_type' ) ? ( 'local' === wp_get_environment_type() || 'development' === wp_get_environment_type() ) : false;
+	return 'local' === get_environment_type() || 'development' === get_environment_type();
 }
 
 /**
