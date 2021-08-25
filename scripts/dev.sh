@@ -30,7 +30,7 @@ fi
 # Start the build
 if [ $1 = "composer" ] || [ $2 = "composer" ] || [ $3 = "composer" ] || [ $4 = "composer" ]; then
   echo "===== BUILD COMPOSER FILES  ==========="
-  cd ./plugins/post-type-csv-exporter
+  cd cd ./build
   composer install --ignore-platform-reqs
 
   ## Return to prev dir being repo root dir, ready for next command..

@@ -4,7 +4,7 @@
 set -e
 
 echo "==== BUILD COMPOSER FILES  ============================="
-cd ./plugins/post-type-csv-exporter
+cd ./build
 composer install --ignore-platform-reqs
 
 ## Return to prev dir being repo root dir, ready for next command.

@@ -4,10 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit82a022918342b1bcd32a2d7d94f3a407
+class ComposerStaticInit02967eab6fbf39623934fa5f93402165
 {
     public static $files = array (
-        '83452c1000f2e6ad6960a3e921789a66' => __DIR__ . '/../..' . '/source/php/Function/AutoLoad.php',
+        'f13b5304cc5960f6dd19fccb3ef39750' => __DIR__ . '/../../../..'.'/build' . '/../plugins/post-type-csv-exporter/source/php/Function/AutoLoad.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,15 +20,20 @@ class ComposerStaticInit82a022918342b1bcd32a2d7d94f3a407
     public static $prefixDirsPsr4 = array (
         'PostTypeCSVExporter\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/source/php',
+            0 => __DIR__ . '/../../../..'.'/build' . '/../plugins/post-type-csv-exporter/source/php',
         ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit82a022918342b1bcd32a2d7d94f3a407::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit82a022918342b1bcd32a2d7d94f3a407::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit02967eab6fbf39623934fa5f93402165::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit02967eab6fbf39623934fa5f93402165::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit02967eab6fbf39623934fa5f93402165::$classMap;
 
         }, null, ClassLoader::class);
     }
