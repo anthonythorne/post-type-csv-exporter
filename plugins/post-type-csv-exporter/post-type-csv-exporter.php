@@ -18,23 +18,37 @@ if ( ! defined( 'POST_TYPE_CSV_EXPORTER_DIR_PATH' ) ) {
 	define( 'POST_TYPE_CSV_EXPORTER_DIR_PATH', plugin_dir_path( __FILE__ ) );
 }
 
-define( 'POST_TYPE_CSV_EXPORTER_VERSION', '1' );
-
-require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+define( 'POST_TYPE_CSV_EXPORTER_VERSION', '1.1' );
 
 add_action( 'plugins_loaded', 'post_type_csv_exporter_setup' );
+
 /**
  * Setup the plugin controllers.
  */
 function post_type_csv_exporter_setup() {
-	// All of the theme controller instances.
-	$controllers = [
-		new \PostTypeCSVExporter\Controller\AdminSettingsController(),
-	];
+	/**
+	 * Custom files driven by composer.
+	 */
+	$autoload_file = dirname( __FILE__ ) . '/vendor/autoload.php';
 
-	// Boot each of the theme controller instances.
-	foreach ( $controllers as $controller ) {
-		$controller->setup();
+	if ( file_exists( $autoload_file ) ) {
+
+		require_once $autoload_file;
+
+		// All of the controller instances.
+		$controllers = [];
+
+		if ( ! $controllers ) {
+			return;
+		}
+
+		// Boot each of the controller instances.
+		foreach ( $controllers as $controller ) {
+			$controller->setup();
+		}
+	} elseif ( is_local() ) {
+		// Trigger an error for local environment only.
+		trigger_error( 'Run composer for the ' . dirname( __FILE__ ) . ' plugin.', E_USER_ERROR ); // phpcs:ignore
 	}
 
 }
