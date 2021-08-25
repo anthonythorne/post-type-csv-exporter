@@ -9,7 +9,6 @@
 namespace PostTypeCSVExporter\View;
 
 use PostTypeCSVExporter\Library\Templater;
-use PostTypeCSVExporter\Library\Config;
 use PostTypeCSVExporter\Library\View;
 
 /**
