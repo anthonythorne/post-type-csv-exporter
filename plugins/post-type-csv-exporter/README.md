@@ -1,61 +1,9 @@
-# post-type-csv-exporter
-This plugin has been created to assist with exporting post types, along with their metadata and the use of custom hooks for custom columns.
+# USE
 
-### FUTURE
-It is intended to add the support for taxonomies.
-
-## STRUCTURE
-This plugin is divided into two segments.
-First is the folder structure as a whole which includes files that are not required within the plugin.
-Second are the files within the `plugins/post-type-csv-exporter/` which is the directory used as a plugin.
-
-### Folder Layout
-
-Below is the basic layout / structure of the theme:
-
-- `asset-src/` - Raw asset files that are built and packaged into the plugin.
-- `build/` - The build tools and libraries for npm and composer.
-- `plugins/post-type-csv-exporter/` - The directory that is used as a plugin.
-- `scripts/` - Helper scripts to run the build process.
-
-## Build
-The build should be run before packaging and using the plugin. simply run the following command;
-
-```bash
-cd /path/to/this/dir/
-./scripts/build.sh
-```
-
-## Dev
-The build should be run before packaging and using the plugin. simply run the follwong command
-
-```bash
-
-# CLI variables available $1, $2, $3, $4
-# - composer - will build the composer assets before dev start.
-# - install - will build the package.json assets before dev start.
-# - yarn - will use yarn instead of npm.
-# - dashboard - will use the dev dashboard.
-```
-
-### Basic and using NPM
-```bash
-cd /path/to/this/dir/
-./scripts/dev.sh
-```
-
-### Using Yarn and Dev Dashboard
-```bash
-cd /path/to/this/dir/
-./scripts/dev.sh yarn dashboard
-```
-
-## USE
-
-### BASIC
+## BASIC
 1. Copy this plugins directory into your WordPress install
 1. Use a class or function to add the settings page.
-simple, replacing <post_type> with your post type;
+   simple, replacing <post_type> with your post type;
 ```php
 add_action( 'init', 'add_csv_exporter_admin_page', 100 );
 function add_csv_exporter_admin_page() {
@@ -65,7 +13,7 @@ function add_csv_exporter_admin_page() {
 }
 ```
 
-### ADVANCED
+## ADVANCED
 Adding custom columns and data related to your post type.
 ```php
 
