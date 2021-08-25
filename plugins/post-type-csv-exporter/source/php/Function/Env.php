@@ -37,7 +37,7 @@ function is_production() {
 	}
 
 	// Default, returns true for production if not set.
-	return 'production' === get_environment_type();
+	return function_exists( 'wp_get_environment_type' ) ? 'production' === wp_get_environment_type() : true;
 }
 
 /**
@@ -51,49 +51,9 @@ function is_staging() {
 		return 'staging' === WP_ENV;
 	}
 
-	if ( 'staging' == get_environment_type() ) {
-		return true;
-	}
-
-	return ( strpos( get_site_url(), 'stage' ) !== false );
+	// Default, returns true for production if not set.
+	return function_exists( 'wp_get_environment_type' ) ? 'staging' === wp_get_environment_type() : false;
 }
-
-/**
- * Basic helper function to check if this is the uat development environment.
- *
- * @return bool
- */
-function is_uat() {
-
-	if ( defined( 'WP_ENV' ) ) {
-		return 'uat' === WP_ENV;
-	}
-
-	if ( 'uat' == get_environment_type() ) {
-		return true;
-	}
-
-	return ( strpos( get_site_url(), 'uat' ) !== false );
-}
-
-/**
- * Basic helper function to check if this is the dev development environment.
- *
- * @return bool
- */
-function is_dev() {
-
-	if ( defined( 'WP_ENV' ) ) {
-		return 'dev' === WP_ENV;
-	}
-
-	if ( 'development' == get_environment_type() ) {
-		return true;
-	}
-
-	return ( strpos( get_site_url(), 'dev' ) !== false );
-}
-
 
 /**
  * Basic helper function to check if this is the local development environment.
@@ -110,11 +70,8 @@ function is_local() {
 		return WP_LOCAL_DEV;
 	}
 
-	if ( 'local' == get_environment_type() ) {
-		return true;
-	}
-
-	return ( strpos( get_site_url(), '.local' ) !== false );
+	// Default, returns true for production if not set.
+	return function_exists( 'wp_get_environment_type' ) ? ( 'local' === wp_get_environment_type() || 'development' === wp_get_environment_type() ) : false;
 }
 
 /**
@@ -126,14 +83,8 @@ function get_environment_slug() {
 
 	if ( is_local() ) {
 		return 'local';
-	} elseif ( is_dev() ) {
-		return 'dev';
-	} elseif ( is_uat() ) {
-		return 'uat';
 	} elseif ( is_staging() ) {
 		return 'staging';
-	} elseif ( strpos( get_site_url(), 'new.indexexchange.com' ) !== false ) {
-		return 'new';
 	}
 
 	return 'production';

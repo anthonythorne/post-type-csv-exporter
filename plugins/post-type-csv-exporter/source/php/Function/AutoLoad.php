@@ -9,9 +9,7 @@
 // phpcs:disable WordPress.Files.FileName
 
 // File names in specific load order.
-$specific_file_load_order = [
-	'Env',
-];
+$specific_file_load_order = [];
 
 $function_files = glob( __DIR__ . DIRECTORY_SEPARATOR . '*.php' );
 

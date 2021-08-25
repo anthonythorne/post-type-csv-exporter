@@ -7,9 +7,10 @@
  *
  * Variable Type Definition.
  *
- * @var string $page_title     Page Title
- * @var array  $post_keys      An array of WP_Post object keys.
- * @var array  $post_meta_keys An array of post meta keys for this post type.
+ * @var string $page_title      Page Title
+ * @var array  $post_keys       An array of WP_Post object keys.
+ * @var array  $post_meta_keys  An array of post meta keys for this post type.
+ * @var array  $post_extra_keys An array of extra keys filled out with WP filters and callbacks.
  */
 
 ?>
@@ -49,26 +50,28 @@
 							</div>
 						</div>
 
-						<div class="postbox csv-exporter-postbox">
-							<h2 class="hndle">Export Post keys</h2>
-							<div class="inside">
-								<?php foreach ( $post_keys as $post_key => $post_key_title ) : ?>
-									<div class="form-field">
-										<div class="form-field--input-label">
-											<label for="<?php echo esc_attr( $post_key ); ?>">
-												<input type="checkbox"
-													id="<?php echo esc_attr( $post_key ); ?>"
-													name="<?php echo esc_attr( $post_key ); ?>">
-												<?php echo esc_html( $post_key_title ); ?>
-											</label>
+						<?php if ( ! empty( $post_keys ) ) : ?>
+							<div class="postbox csv-exporter-postbox">
+								<h2 class="hndle">Export Post keys</h2>
+								<div class="inside">
+									<?php foreach ( $post_keys as $post_key => $post_key_title ) : ?>
+										<div class="form-field">
+											<div class="form-field--input-label">
+												<label for="<?php echo esc_attr( $post_key ); ?>">
+													<input type="checkbox"
+														id="<?php echo esc_attr( $post_key ); ?>"
+														name="<?php echo esc_attr( $post_key ); ?>">
+													<?php echo esc_html( $post_key_title ); ?>
+												</label>
+											</div>
 										</div>
-									</div>
-								<?php endforeach; ?>
+									<?php endforeach; ?>
+								</div>
 							</div>
-						</div>
+						<?php endif; ?>
 
 						<div class="postbox csv-exporter-postbox">
-							<h2 class="hndle">Export Post keys</h2>
+							<h2 class="hndle">Export Post Meta Keys</h2>
 							<div class="inside">
 								<?php foreach ( $post_meta_keys as $post_meta_key => $post_meta_key_title ) : ?>
 									<div class="form-field">
@@ -84,6 +87,26 @@
 								<?php endforeach; ?>
 							</div>
 						</div>
+
+						<?php if ( ! empty( $post_extra_keys ) ) : ?>
+							<div class="postbox csv-exporter-postbox">
+								<h2 class="hndle">Export Post Extra Keys</h2>
+								<div class="inside">
+									<?php foreach ( $post_extra_keys as $post_extra_key => $post_extra_key_title ) : ?>
+										<div class="form-field">
+											<div class="form-field--input-label">
+												<label for="<?php echo esc_attr( $post_extra_key ); ?>">
+													<input type="checkbox"
+														id="<?php echo esc_attr( $post_extra_key ); ?>"
+														name="<?php echo esc_attr( $post_extra_key ); ?>">
+													<?php echo esc_html( $post_extra_key_title ); ?>
+												</label>
+											</div>
+										</div>
+									<?php endforeach; ?>
+								</div>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 

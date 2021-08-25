@@ -242,6 +242,7 @@ class CSVExporter {
 			'page_title'     => $this->export_page_title,
 			'post_keys'      => $this->get_post_keys( $this->post_type ),
 			'post_meta_keys' => $this->get_meta_keys_for_post_type( $this->post_type ),
+			'post_extra_keys' => $this->get_post_extra_keys( $this->post_type ),
 		];
 
 		AdminCSVExporterView::render_admin_page( self::TEMPLATE_SLUG, '', $template_vars );
@@ -362,6 +363,49 @@ class CSVExporter {
 	}
 
 	/**
+	 * Return the post meta keys from a sample.
+	 *
+	 * @param string $post_type The post type to gather extra keys for.
+	 *
+	 * @return array|mixed|void
+	 */
+	public function get_csv_exporter_post_extra_keys_and_callbacks( $post_type ) {
+		$extra_keys = [];
+
+		/**
+		 * Filter: post_type_csv_exporter_post_extra_keys_<post_type>
+		 * Allows for filtering extra keys that are programmatically added with WordPress filtering and callbacks.
+		 */
+		return apply_filters( "post_type_csv_exporter_post_extra_keys_and_callbacks_{$post_type}", $extra_keys );
+
+	}
+
+	/**
+	 * Return the post meta keys from a sample.
+	 *
+	 * @param string $post_type The post type to gather extra keys for.
+	 *
+	 * @return array|mixed|void
+	 */
+	public function get_post_extra_keys( $post_type ) {
+
+		$extra_keys = [];
+
+		$extra_keys_and_callbacks = $this->get_csv_exporter_post_extra_keys_and_callbacks( $post_type );
+
+		// Bail early.
+		if ( empty( $extra_keys_and_callbacks ) ) {
+			return $extra_keys;
+		}
+
+		$extra_keys = array_keys( $extra_keys_and_callbacks );
+
+		// Filter the format.
+		return $this->create_key_title_pair( $extra_keys );
+
+	}
+
+	/**
 	 * Create an array where the key is teh value, and teh value is readable version of itself.
 	 *
 	 * @param array $array An array of values to convert.
@@ -371,7 +415,7 @@ class CSVExporter {
 	protected function create_key_title_pair( $array ) {
 
 		// Bail early.
-		if ( ! is_array( $array ) ) {
+		if ( ! is_array( $array ) || empty( $array ) ) {
 			return $array;
 		}
 
@@ -410,11 +454,12 @@ class CSVExporter {
 		}
 
 		// Gather the allowed keys.
-		$post_keys      = $this->get_post_keys( $post_type );
-		$post_meta_keys = $this->get_meta_keys_for_post_type( $post_type );
+		$post_keys       = $this->get_post_keys( $post_type );
+		$post_meta_keys  = $this->get_meta_keys_for_post_type( $post_type );
+		$post_extra_keys = $this->get_post_extra_keys( $post_type );
 
 		// Sort allowed keys with chosen keys to obtain the csv headers.
-		$csv_headers = array_merge( $post_keys, $post_meta_keys );
+		$csv_headers = array_merge( $post_keys, $post_meta_keys, $post_extra_keys );
 		foreach ( $csv_headers as $key => $title ) {
 			if ( empty( $this->post_variables( $key ) ) ) {
 				unset( $csv_headers[ $key ] );
@@ -464,6 +509,8 @@ class CSVExporter {
 			return $rows;
 		}
 
+		$extra_keys_and_callbacks = $this->get_csv_exporter_post_extra_keys_and_callbacks( $post_type );
+
 		// Loop over each row for each post.
 		$index = 0;
 		foreach ( $posts as $post ) {
@@ -477,12 +524,29 @@ class CSVExporter {
 				// Add the post keys.
 				if ( isset( $post->{$key} ) ) {
 					$rows[ $index ][] = $post->{$key};
+					continue;
 				}
 
 				// Add the meta keys.
 				if ( isset( $post_meta_keys[ $key ] ) ) {
 					$rows[ $index ][] = $post_meta_keys[ $key ];
+					continue;
 				}
+
+				if ( ! empty( $extra_keys_and_callbacks ) &&
+					isset( $extra_keys_and_callbacks[ $key ] ) ) {
+
+					$callback = $extra_keys_and_callbacks[ $key ];
+
+					if ( is_callable( $callback ) ) {
+						$rows[ $index ][] = call_user_func( $callback, $post->ID );
+					} else {
+						$rows[ $index ][] = 'Function not available.';
+					}
+					continue;
+				}
+
+				$rows[ $index ][] = ''; // Add a empty row value.
 			}
 
 			$index++;

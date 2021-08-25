@@ -194,8 +194,6 @@ function log( logDetails = {} ) {
 			exporter.setSubmitButtonMessage( 'Exporting...' );
 			exporter.updateSubmitButton();
 
-			console.log( data);
-
 			$.post( ajaxurl, data, function( response ) {
 
 				if ( response.success ) {
