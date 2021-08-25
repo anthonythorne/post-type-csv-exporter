@@ -100,18 +100,18 @@ class Templater {
 
 		// Render and return empty string.
 		if ( $output ) {
-			$this->renderOutput();
+			$this->render_output();
 			return '';
 		}
 
 		// Store and return output.
 		ob_start();
-		$this->renderOutput();
+		$this->render_output();
 		return ob_get_clean();
 	}
 
 	/** Renders the template and outputs the result */
-	private function renderOutput() {
+	private function render_output() {
 
 		$name = $this->slug;
 
@@ -124,7 +124,7 @@ class Templater {
 
 		if ( file_exists( $themeView ) ) { // use the theme file preferentially.
 
-			$this->renderFile( $themeView );
+			$this->render_file( $themeView );
 		} else {
 
 			if ( ! empty( $this->subdir ) ) {
@@ -133,7 +133,7 @@ class Templater {
 				$dir = "$this->dir/template";
 			}
 
-			$this->renderFile( "$dir/$name.php" );
+			$this->render_file( "$dir/$name.php" );
 		}
 	}
 
@@ -142,7 +142,7 @@ class Templater {
 	 *
 	 * @param string $templateFile The template file and path.
 	 */
-	private function renderFile( $templateFile ) {
+	private function render_file( $templateFile ) {
 
 		assert( ! empty( $templateFile ) );
 

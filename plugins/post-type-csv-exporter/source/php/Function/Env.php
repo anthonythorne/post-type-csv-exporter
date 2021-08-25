@@ -51,9 +51,49 @@ function is_staging() {
 		return 'staging' === WP_ENV;
 	}
 
-	// Default, returns true for production if not set.
-	return 'staging' === get_environment_type();
+	if ( 'staging' == get_environment_type() ) {
+		return true;
+	}
+
+	return ( strpos( get_site_url(), 'stage' ) !== false );
 }
+
+/**
+ * Basic helper function to check if this is the uat development environment.
+ *
+ * @return bool
+ */
+function is_uat() {
+
+	if ( defined( 'WP_ENV' ) ) {
+		return 'uat' === WP_ENV;
+	}
+
+	if ( 'uat' == get_environment_type() ) {
+		return true;
+	}
+
+	return ( strpos( get_site_url(), 'uat' ) !== false );
+}
+
+/**
+ * Basic helper function to check if this is the dev development environment.
+ *
+ * @return bool
+ */
+function is_dev() {
+
+	if ( defined( 'WP_ENV' ) ) {
+		return 'dev' === WP_ENV;
+	}
+
+	if ( 'development' == get_environment_type() ) {
+		return true;
+	}
+
+	return ( strpos( get_site_url(), 'dev' ) !== false );
+}
+
 
 /**
  * Basic helper function to check if this is the local development environment.
@@ -70,8 +110,11 @@ function is_local() {
 		return WP_LOCAL_DEV;
 	}
 
-	// Default, returns true for production if not set.
-	return 'local' === get_environment_type() || 'development' === get_environment_type();
+	if ( 'local' == get_environment_type() ) {
+		return true;
+	}
+
+	return ( strpos( get_site_url(), '.local' ) !== false );
 }
 
 /**
@@ -83,8 +126,14 @@ function get_environment_slug() {
 
 	if ( is_local() ) {
 		return 'local';
+	} elseif ( is_dev() ) {
+		return 'dev';
+	} elseif ( is_uat() ) {
+		return 'uat';
 	} elseif ( is_staging() ) {
 		return 'staging';
+	} elseif ( strpos( get_site_url(), 'new.indexexchange.com' ) !== false ) {
+		return 'new';
 	}
 
 	return 'production';
