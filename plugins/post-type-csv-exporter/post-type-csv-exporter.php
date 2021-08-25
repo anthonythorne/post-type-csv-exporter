@@ -31,26 +31,23 @@ function post_type_csv_exporter_setup() {
 	 */
 	$autoload_file = dirname( __FILE__ ) . '/vendor/autoload.php';
 
-	if ( file_exists( $autoload_file ) ) {
-
-		require_once $autoload_file;
-
-		// All of the controller instances.
-		$controllers = [];
-
-		if ( ! $controllers ) {
-			return;
-		}
-
-		// Boot each of the controller instances.
-		foreach ( $controllers as $controller ) {
-			$controller->setup();
-		}
-	} elseif ( is_local() ) {
-		// Trigger an error for local environment only.
-		trigger_error( 'Run composer for the ' . dirname( __FILE__ ) . ' plugin.', E_USER_ERROR ); // phpcs:ignore
+	if ( ! file_exists( $autoload_file ) ) {
+		return;
 	}
 
+	require_once $autoload_file;
+
+	// All of the controller instances.
+	$controllers = [];
+
+	if ( ! $controllers ) {
+		return;
+	}
+
+	// Boot each of the controller instances.
+	foreach ( $controllers as $controller ) {
+		$controller->setup();
+	}
 }
 
 // TODO not required at this stage.

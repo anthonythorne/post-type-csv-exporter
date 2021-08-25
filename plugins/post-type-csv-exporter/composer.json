@@ -1,0 +1,16 @@
+{
+  "name": "anthonythorne33/post-type-csv-exporter",
+  "description": "Post Type CSV Exporter",
+  "version": "1.1.0",
+  "require": {
+    "php": ">=7.3.0"
+  },
+  "autoload": {
+    "files": [
+      "./src/php/Function/AutoLoad.php"
+    ],
+    "psr-4": {
+      "PostTypeCSVExporter\\": "./src/php/"
+    }
+  }
+}

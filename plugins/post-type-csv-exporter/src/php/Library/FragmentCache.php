@@ -2,7 +2,7 @@
 /**
  * Simple fragment cache using WordPress transients.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Library/FragmentCache.php
+ * @file    plugins/post-type-csv-exporter/src/php/Library/FragmentCache.php
  * @package PostTypeCSVExporter
  */
 

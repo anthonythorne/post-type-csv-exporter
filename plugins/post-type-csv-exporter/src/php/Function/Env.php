@@ -2,7 +2,7 @@
 /**
  * Environment helper functions.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Function/Env.php
+ * @file    plugins/post-type-csv-exporter/src/php/Function/Env.php
  * @package PostTypeCSVExporter
  */
 

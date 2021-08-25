@@ -2,7 +2,7 @@
 /**
  * Templating system which works with the existing WordPress theme hierarchy.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Library/Templater.php
+ * @file    plugins/post-type-csv-exporter/src/php/Library/Templater.php
  * @package PostTypeCSVExporter
  */
 

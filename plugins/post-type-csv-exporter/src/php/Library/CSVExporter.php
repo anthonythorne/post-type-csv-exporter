@@ -4,7 +4,7 @@
  *
  * Call on init after the post type has been created, possibly priority of 999.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Library/CSVExporter.php
+ * @file    plugins/post-type-csv-exporter/src/php/Library/CSVExporter.php
  * @package PostTypeCSVExporter
  */
 
@@ -186,15 +186,15 @@ class CSVExporter {
 			$this->export_enqueue_hook === $hook &&
 			defined( 'POST_TYPE_CSV_EXPORTER_DIR_PATH' ) ) {
 
-			$source_dir = POST_TYPE_CSV_EXPORTER_DIR_PATH . 'source';
-			$source_url = POST_TYPE_CSV_EXPORTER_URL . 'source';
+			$src_dir = POST_TYPE_CSV_EXPORTER_DIR_PATH . 'src';
+			$src_url = POST_TYPE_CSV_EXPORTER_URL . 'src';
 
-			$js_path = find_asset_file_path( $source_dir, 'js', self::ASSETS_FILE_NAME , 'js' );
+			$js_path = find_asset_file_path( $src_dir, 'js', self::ASSETS_FILE_NAME, 'js' );
 
 			// JS.
 			wp_register_script(
 				self::ASSETS_ENQUEUE_HANDLE . '-js',
-				$source_url . $js_path,
+				$src_url . $js_path,
 				[ 'jquery' ],
 				'1.1',
 				true
@@ -211,9 +211,9 @@ class CSVExporter {
 
 
 			// CSS.
-			$css_path = find_asset_file_path( $source_dir, 'css', self::ASSETS_FILE_NAME , 'css' );
+			$css_path = find_asset_file_path( $src_dir, 'css', self::ASSETS_FILE_NAME, 'css' );
 
-			wp_enqueue_style( self::ASSETS_ENQUEUE_HANDLE, $source_url . $css_path, '', true );
+			wp_enqueue_style( self::ASSETS_ENQUEUE_HANDLE, $src_url . $css_path, '', true );
 		}
 	}
 
@@ -239,9 +239,9 @@ class CSVExporter {
 	public function csv_exports_page() {
 
 		$template_vars = [
-			'page_title'     => $this->export_page_title,
-			'post_keys'      => $this->get_post_keys( $this->post_type ),
-			'post_meta_keys' => $this->get_meta_keys_for_post_type( $this->post_type ),
+			'page_title'      => $this->export_page_title,
+			'post_keys'       => $this->get_post_keys( $this->post_type ),
+			'post_meta_keys'  => $this->get_meta_keys_for_post_type( $this->post_type ),
 			'post_extra_keys' => $this->get_post_extra_keys( $this->post_type ),
 		];
 
@@ -506,6 +506,7 @@ class CSVExporter {
 		if ( empty( $posts ) ) {
 			$this->response['message'] = 'There were no posts found.';
 			$this->response['success'] = false;
+
 			return $rows;
 		}
 
@@ -549,7 +550,7 @@ class CSVExporter {
 				$rows[ $index ][] = ''; // Add a empty row value.
 			}
 
-			$index++;
+			$index ++;
 		}
 
 		return $rows;

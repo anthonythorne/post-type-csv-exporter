@@ -2,7 +2,7 @@
 /**
  * Creates an empty WP post object.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Function/CreateEmptyWPPost.php
+ * @file    plugins/post-type-csv-exporter/src/php/Function/CreateEmptyWPPost.php
  * @package PostTypeCSVExporter
  */
 

@@ -2,7 +2,7 @@
 /**
  * Loads the viewable admin page for a the post type exporter.
  *
- * @file    plugins/post-type-csv-exporter/source/php/View/admin-csv-exporter-view.php
+ * @file    plugins/post-type-csv-exporter/src/php/View/admin-csv-exporter-view.php
  * @package PostTypeCSVExporter
  */
 

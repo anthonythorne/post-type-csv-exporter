@@ -20,7 +20,7 @@ const rootDir = path.resolve( __dirname + '/..' );
 const buildToolsDir = rootDir + '/build';
 
 // The compiled distribution assets.
-const distributionDir = rootDir + '/plugins/post-type-csv-exporter/source/';
+const distributionDir = rootDir + '/plugins/post-type-csv-exporter/src/';
 
 // The assets source code.
 const assetsSrcDir = rootDir + '/assets-src';

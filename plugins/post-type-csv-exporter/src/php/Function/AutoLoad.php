@@ -2,7 +2,7 @@
 /**
  * Autoload function files.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Function/AutoLoad.php
+ * @file    plugins/post-type-csv-exporter/src/php/Function/AutoLoad.php
  * @package PostTypeCSVExporter
  */
 

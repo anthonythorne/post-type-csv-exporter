@@ -2,7 +2,7 @@
 /**
  * Finds the asset file path.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Function/FindAssetFilePath.php
+ * @file    plugins/post-type-csv-exporter/src/php/Function/FindAssetFilePath.php
  * @package PostTypeCSVExporter
  */
 

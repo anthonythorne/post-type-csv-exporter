@@ -2,13 +2,15 @@
 /**
  * Parent controller which all controllers should extend.
  *
- * @file    plugins/post-type-csv-exporter/source/php/Library/Controller.php
+ * @file    plugins/post-type-csv-exporter/src/php/Library/Controller.php
  * @package PostTypeCSVExporter
  */
 
 // phpcs:disable WordPress.Files.FileName
 
 namespace PostTypeCSVExporter\Library;
+
+var_dump( 'here');
 
 /**
  * Parent controller which all controllers should extend.
